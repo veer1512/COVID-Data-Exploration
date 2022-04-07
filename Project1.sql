@@ -142,7 +142,7 @@ Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinatio
 , SUM(CONVERT(bigint,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
 --, (RollingPeopleVaccinated/population)*100
 From Project..CovidDeaths dea
-Join Project..CovidVaccinations vac
+Join Project..covidvaccinations vac
 	On dea.location = vac.location
 	and dea.date = vac.date
 where dea.continent is not null
@@ -166,7 +166,7 @@ as
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(CONVERT(bigint,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
 From Project..CovidDeaths dea
-Join Project..CovidVaccinations vac
+Join Project..covidvaccinations vac
 	On dea.location = vac.location
 	and dea.date = vac.date
 where dea.continent is not null 
